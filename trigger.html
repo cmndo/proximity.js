@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Scroll Proximity</title>
+	</head>
+	<script src="http://code.jquery.com/jquery-1.5.js"></script>
+	<script type="text/javascript" src="jquery.proximity-0.1.js"></script>
+	<script type="text/javascript" src="mathutils.js"></script>
+	<style type="text/css">
+		.space {
+			width: 500px;
+			background: silver;
+			display: inline-block;
+			padding-top: 600px;
+			padding-bottom: 600px;
+		}
+
+		.active {
+
+		}
+	</style>
+	<script type="text/javascript">
+		
+		$(function(){
+			
+			var triggered = false;
+
+
+			//elements
+			var $elem = $("#tar-elem");
+			//Initialize
+			$elem.proximity();
+			
+
+			//add element
+			$elem.proximity('add', {
+				
+				demo: true,
+				color: "red",
+			 	vOffsetPerc: 0.5,
+			 	tarTopOffset: 200,
+			 	tarBottomOffset: 200,
+			 	callback: function($this, e ){
+			 		//mapping method
+					var num = map(e.perc, 1, -1, 200, -200); 
+					
+					if(num < 0 && !triggered){
+						triggered = true;
+						alert("trigger!")
+					}
+
+
+					$this.html(num);
+					
+					console.log(e);
+			 	 }
+			 });
+			
+
+			
+		});
+	</script>
+	<body>
+		<div class="space"></div>
+		<div id="tar-elem">Hi</div>
+		<div class="space"></div>
+	</body>
+</html>

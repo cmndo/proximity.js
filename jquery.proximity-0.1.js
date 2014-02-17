@@ -61,16 +61,6 @@
 						}
 					}
 				});
-				$(window).resize(function(e){
-					for ($i in $elements) {
-						if ($elements[$i].demo) {
-							$tar = $elements[$i].id;
-							$($i + '-hr').offset({top:$(window).height() * $elements[$i].vOffsetPerc});
-						}	
-					}
-					//console.log("resize");
-				});
-				
 			}
 		},
 		add: function( options ){
@@ -83,25 +73,6 @@
 				options.id = $(this);
 				options.index = $elements.length;
 				$elements.push(options);
-				
-				console.log("options.demo = " + options.demo);
-				//add a div to use as temporary hr
-				if (options.demo) {
-					console.log("this is a demo");
-					
-					
-					$tar = $('<div id="'+ (options.index) +'-hr">vOffsetPerc</div>');
-					$("body").append($tar);
-					$tar.css({
-						"position": "fixed",
-						"width": "100%",
-						"border-top-style": "solid",
-						"border-top-width": "1px",
-						"border-top-color": options.color
-					});
-					$tar.offset({top:$(window).height() * options.vOffsetPerc});
-				}
-				
 				
 			});
 		}
