@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Scroll Proximity</title>
+	</head>
+	<script src="http://code.jquery.com/jquery-1.5.js"></script>
+	<script type="text/javascript" src="jquery.proximity-0.1.js"></script>
+	<script type="text/javascript" src="mathutils.js"></script>
+	<style type="text/css">
+		/*
+		 * For things you're going to manage the proximity of
+		 * make sure they are absolutely positioned, and you give
+		 * a height. otherwise it won't work. 
+		 * 
+		 */
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		html, body {
+			height: 100%;
+			background: black;
+		}
+		#tar-elem, #tar-elem2, #tar-elem3  {
+			width: 462px;
+			height: 65px;
+			position: absolute;
+			right: 0%;
+			background: url(img/proximity_blue.png) top left no-repeat;
+			overflow:hidden;
+		}
+		
+		#tar-elem {
+			top: 1100px;
+		}
+		#tar-elem2 {
+			top: 1190px;
+		}
+		#tar-elem3 {
+			top: 1280px;
+		}
+		#tar-elem div, #tar-elem2 div, #tar-elem3 div{
+			width: 462px;
+			height: 65px;
+			position: relative;
+			background: url(img/proximity_white.png) top left no-repeat;
+		}
+		#the-bottom {
+			position:absolute;
+			top: 2500px;
+		}
+	</style>
+	<script type="text/javascript">
+		//position hor-offset for testing;
+		$(function(){
+			
+			//elements
+			var $elem = $("#tar-elem");
+			//Initialize
+			$elem.proximity();
+			$elem.proximity('add', {
+				//TODO: make ability to specify orgin as top, middle, or bottom. fyi, currently its set hardcoded as middle.
+				demo: false,
+				color: "white",
+			 	vOffsetPerc: .5,
+			 	tarTopOffset: 36,
+			 	tarBottomOffset: 36,
+			 	callback: function($this, e ){
+			 		//mapping method
+					var num = map(e.perc, 1, -1, 65, -65); 
+					$this.find("div").css({
+									"background-position": "0px " + num +"px",
+									"top": -num + "px"});
+					
+			 	 }
+			 });
+			 var $elem = $("#tar-elem2");
+			//Initialize
+			$elem.proximity('add', {
+				//TODO: make ability to specify orgin as top, middle, or bottom. fyi, currently its set hardcoded as middle.
+				demo: false,
+				color: "white",
+			 	vOffsetPerc: .5,
+			 	tarTopOffset: 36,
+			 	tarBottomOffset: 36,
+			 	callback: function($this, e ){
+			 		//mapping method
+					var num = map(e.perc, 1, -1, 65, -65); 
+					$this.find("div").css({
+									"background-position": "0px " + num +"px",
+									"top": -num + "px"});
+					
+			 	 }
+			 });
+			 var $elem = $("#tar-elem3");
+			//Initialize
+			$elem.proximity('add', {
+				//TODO: make ability to specify orgin as top, middle, or bottom. fyi, currently its set hardcoded as middle.
+				demo: false,
+				color: "white",
+			 	vOffsetPerc: .5,
+			 	tarTopOffset: 36,
+			 	tarBottomOffset: 36,
+			 	callback: function($this, e ){
+			 		//mapping method
+					var num = map(e.perc, 1, -1, 65, -65); 
+					$this.find("div").css({
+									"background-position": "0px " + num +"px",
+									"top": -num + "px"});
+					
+			 	 }
+			 });
+			
+			
+		});
+	</script>
+	<body>
+		<div id="fixed_menu">
+			<a id="tar-elem" href="http://www.digitalsurgeons.com"><div class="prox_mask"></div></a>
+			<a id="tar-elem2" href="http://www.digitalsurgeons.com"><div class="prox_mask"></div></a>
+			<a id="tar-elem3" href="http://www.digitalsurgeons.com"><div class="prox_mask"></div></a>
+		</div>
+			
+		<div id="the-bottom"><span>.</span></div>
+	</body>
+</html>
